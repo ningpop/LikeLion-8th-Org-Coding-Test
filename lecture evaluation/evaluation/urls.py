@@ -15,6 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+
 import home.views
 import addlecture.views
 import search.views
@@ -23,5 +24,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', home.views.home, name='home'),
     path('add/', addlecture.views.addLecture, name='add'),
-    path('search/', search.views.searchLecture, name='search')
+    path('search/', search.views.searchLecture, name='search'),
+    path('search/detail/<int:lecture_id>/', search.views.detailLecture, name='detail')
 ]

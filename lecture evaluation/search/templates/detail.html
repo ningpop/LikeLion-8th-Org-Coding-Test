@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>대학 강의 평가 - 강의 검색</title>
+    <title>대학 강의 평가 - 강의</title>
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
@@ -12,20 +12,12 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 
     <style>
-        .banner{
-            width: 50%;
-            margin-left: 25%;
-            margin-right: 25%;
-            margin-top: 1%;
-            margin-bottom: 1%;
-        }
         .card{
             text-align: center;
-            margin-right: 5%;
-            margin-left: 5%;
-        }
-        .board{
-            text-align: center;
+            margin-left: 25%;
+            margin-right: 25%;
+            margin-top: 2%;
+            margin-bottom: 2%;
         }
     </style>
 </head>
@@ -44,34 +36,21 @@
     </nav>
 
     <div>
-        <div class="banner" style="text-align: center;">
-            <h1>강의 평가 검색</h1>
-            <p>대학 강의를 검색하세요.</p>
-            <p>강의 평을 보거나 추가하고 싶다면, 강의명으로 검색하세요.</p>
-            <div>
-                <form class="form-inline" style="display: inline;">
-                    <input class="form-control mr-sm-2" style="width: 70%;" type="search" aria-label="Search">
-                    <button class="btn btn-outline-success my-2 my-sm-0" style="width: 20%;" type="submit">Search</button>
-                </form>
+        <div class="card" style="width: 50%;">
+            <div class="card-body">
+                <h4 class="card-title">{{ lecture.title }}</h5>
+                <h5 class="card-subtitle mb-2 text-muted">{{ lecture.professor }}</h5>
             </div>
         </div>
 
-        <div class="board">
-            {% for lecture in lecture_list %}
-            {% if forloop.counter0|divisibleby:2 %}
-            <br><br>
-            {% endif %}
-            <div class="card" style="width: 18rem; display: inline-block;">
-                <div class="card-body">
-                    <h5 class="card-title">{{ lecture.title }}</h5>
-                    <h6 class="card-subtitle mb-2 text-muted">{{ lecture.professor }}</h6>
-                    <br>
-                    <a href="{% url 'detail' lecture.id %}" class="btn btn-outline-secondary btn-sm">평가 보기</a>
-                    <a href="#" class="btn btn-outline-danger btn-sm">평가 등록하기</a>
-                </div>
+        <div class="card">
+            <h5 class="card-header">(익명)</h5>
+            <div class="card-body">
+                <h5 class="card-title">강의 평가 (?)점 / 10점 만점</h5>
+                <p class="card-text">(과제, 시험 및 수업에 대한 특이사항과 후기들)</p>
             </div>
-            {% endfor %}
         </div>
+
     </div>
 </body>
 </html>
