@@ -21,6 +21,7 @@ from . import views
 
 urlpatterns = [
     path('board/', views.boardLecture, name='board'),
+    path('result/', views.lecture_search, name='lecture_search'),
     path('detail/<int:lecture_id>/', views.detailLecture, name='detail'),
     path('detail/<int:lecture_id>/evaluate/', views.evaluateLecture, name='evaluate'),
     path('<int:lecture_id>/delete/', views.lecture_delete, name = 'lecture_delete'),

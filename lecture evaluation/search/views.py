@@ -16,6 +16,13 @@ def evaluateLecture(request, lecture_id):
     lecture_evaluate = get_object_or_404(Lecture, pk=lecture_id)
     return render(request, 'evaluate.html', {'lecture': lecture_evaluate})
 
+def lecture_search(request):
+    lecture_list = Lecture.objects.all()
+    keyword = request.GET.get('search', '')
+    if keyword:
+        lecture_list = lecture_list.filter(title__icontains=keyword)
+    return render(request, 'board.html', {'lecture_list': lecture_list})
+
 def lecture_delete(request, lecture_id):
     lecture = get_object_or_404(Lecture, pk=lecture_id)
     lecture.delete()
