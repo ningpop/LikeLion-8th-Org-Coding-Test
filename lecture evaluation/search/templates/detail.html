@@ -30,7 +30,19 @@
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav">
                 <a class="nav-item nav-link active" href="{% url 'search' %}">강의 검색</a>
-                <a class="nav-item nav-link" href="{% url 'add' %}">강의 평가하기</a>
+                <a class="nav-item nav-link" href="{% url 'add' %}">강의 추가</a>
+            </div>
+            <div class="navbar-nav" style="margin-left: 70%;">
+                {% if user.is_authenticated %}
+                <a class="nav-item nav-link active">환영합니다. {{user.username}}님!</a>
+                <a class="nav-item nav-link active" href="javascript:{document.getElementById('logout').submit()}">Logout</a>
+                <form id="logout" method="POST" action="{% url 'logout' %}">
+                    {% csrf_token %} <input type="hidden" />
+                </form>
+                {% else %}
+                <a class="nav-item nav-link active" href="{% url 'login' %}">Log In</a>
+                <a class="nav-item nav-link active" href="{% url 'signup' %}">Sign Up</a>
+                {% endif %}
             </div>
         </div>
     </nav>
@@ -43,14 +55,19 @@
             </div>
         </div>
 
+        {% for review in lecture.review.all %}
         <div class="card">
-            <h5 class="card-header">(익명)</h5>
+            <h5 class="card-header">{{ review.user }}</h5>
             <div class="card-body">
-                <h5 class="card-title">강의 평가 (?)점 / 10점 만점</h5>
-                <p class="card-text">(과제, 시험 및 수업에 대한 특이사항과 후기들)</p>
+                <h5 class="card-title">점수: {{ review.personal_score }}점 / 5점 만점</h5>
+                <p class="card-text">{{ review.body }}</p>
             </div>
         </div>
-
+        {% empty %}
+        <div class="alert alert-danger" role="alert" style="margin-left: 25%; margin-right: 25%">
+            이 강의에 대한 평가가 존재하지 않습니다. <a href="#" class="alert-link">여기</a>를 눌러 지금 강의평가를 작성해보세요!
+        </div>
+        {% endfor %}
     </div>
 </body>
 </html>

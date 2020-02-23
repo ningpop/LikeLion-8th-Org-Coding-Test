@@ -27,7 +27,19 @@
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav">
                 <a class="nav-item nav-link" href="{% url 'search' %}">강의 검색</a>
-                <a class="nav-item nav-link" href="{% url 'add' %}">강의 평가하기</a>
+                <a class="nav-item nav-link" href="{% url 'add' %}">강의 추가</a>
+            </div>
+            <div class="navbar-nav" style="margin-left: 70%;">
+                {% if user.is_authenticated %}
+                <a class="nav-item nav-link active">환영합니다. {{user.username}}님!</a>
+                <a class="nav-item nav-link active" href="javascript:{document.getElementById('logout').submit()}">Logout</a>
+                <form id="logout" method="POST" action="{% url 'logout' %}">
+                    {% csrf_token %} <input type="hidden" />
+                </form>
+                {% else %}
+                <a class="nav-item nav-link active" href="{% url 'login' %}">Log In</a>
+                <a class="nav-item nav-link active" href="{% url 'signup' %}">Sign Up</a>
+                {% endif %}
             </div>
         </div>
     </nav>
@@ -39,15 +51,16 @@
         </div>
     </div>
 
-    <div style="text-align: center;">
+    <div style="text-align: center; margin-top: 8%; margin-bottom: 10%;">
         <a class="btn btn-dark btn-lg mr-sm-3 mt-sm-4" href="{% url 'search' %}">강의 검색</a>
         <a class="btn btn-dark btn-lg ml-sm-3 mt-sm-4" href="{% url 'add' %}">강의 평가하기</a>
     </div>
 
     <footer class="text-muted bg-light pt-5 pb-5 mt-sm-5">
         <div class="container">
-            <p class="mb-1">+82 10-****-**** / 22, Soonchunhyang-ro, Sinchang-myeon, Asan-si, Chungcheongnam-do, Republic of Korea</p>
-            <p class="mb-1"><br>Copyrightⓒ2020 ningpop All rights reserved.</p>
+            <p class="mb-1">충남 아산시 신창면 순천향로 22, 순천향대학교</p>
+            <p class="mb-1">Contact: craft1933@likelion.org</p>
+            <p class="mb-1"><br>Copyrightⓒ2020 이남준 All rights reserved.</p>
         </div>
     </footer>
 </body>
