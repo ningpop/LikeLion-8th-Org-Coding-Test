@@ -22,4 +22,7 @@ from . import views
 urlpatterns = [
     path('board/', views.boardLecture, name='board'),
     path('detail/<int:lecture_id>/', views.detailLecture, name='detail'),
+    path('detail/<int:lecture_id>/evaluate/', views.evaluateLecture, name='evaluate'),
+    path('review/', views.review, name="review"),
+    path('review/delete/<int:review_id>', views.review_delete, name="review_delete")
 ]

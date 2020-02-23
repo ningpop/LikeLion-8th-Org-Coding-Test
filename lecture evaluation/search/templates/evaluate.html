@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+
+{% block title %}
+<title>대학 강의 평가 - 평가 등록</title>
+{% endblock %}
+
+{% block style %}
+<style>
+    .card{
+        margin-left: 25%;
+        margin-right: 25%;
+        margin-top: 2%;
+        margin-bottom: 2%;
+        width: 50%;
+    }
+    a, a:link, a:visited, a:hover{
+        text-decoration: none;
+    }
+</style>
+{% endblock %}
+
+{% block navbar %}
+<div class="navbar-nav">
+    <a class="nav-item nav-link" href="{% url 'board' %}">강의 검색</a>
+    <a class="nav-item nav-link" href="{% url 'add' %}">강의 추가</a>
+</div>
+{% endblock %}
+
+{% block content %}
+<div class="card">
+    <div class="card-body">
+        <h4 class="card-title">{{ lecture.title }}</h5>
+        <h5 class="card-subtitle mb-2 text-muted">{{ lecture.professor }}</h5>
+    </div>
+</div>
+
+<div class="card">
+    <form method='POST' action="{% url 'review' %}">
+        {% csrf_token %}
+        <input type="hidden" value="{{ lecture.id }}" name="lecture">
+        <div class="card-body form-group">
+            <h5 class="card-title">점수</h5>
+            <select name="personal_score" class="form-control">
+                <option value="★☆☆☆☆">★☆☆☆☆</option>
+                <option value="★★☆☆☆">★★☆☆☆</option>
+                <option value="★★★☆☆">★★★☆☆</option>
+                <option value="★★★★☆">★★★★☆</option>
+                <option value="★★★★★">★★★★★</option>
+            </select>
+            <br>
+            <div class="form-group">
+                <h5 class="card-title">강의 상세 평가</h5>
+                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="body" placeholder="이 강의에 대한 총평을 작성해주세요.&#10;(등록 후에는 수정 및 삭제가 불가능하므로 신중히 적어주세요.)"></textarea>
+            </div>
+            <button class="btn btn-success" type="submit">작성하기</button>
+            <a class="btn btn-secondary" href="{% url 'detail' lecture.id %}">목록</a>
+        </div>
+    </form>
+</div>
+{% endblock %}
