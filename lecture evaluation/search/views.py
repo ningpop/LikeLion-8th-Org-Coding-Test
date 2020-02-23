@@ -16,6 +16,10 @@ def evaluateLecture(request, lecture_id):
     lecture_evaluate = get_object_or_404(Lecture, pk=lecture_id)
     return render(request, 'evaluate.html', {'lecture': lecture_evaluate})
 
+def lecture_delete(request, lecture_id):
+    lecture = get_object_or_404(Lecture, pk=lecture_id)
+    lecture.delete()
+    return redirect('/search/board/')
 
 # Review
 

@@ -23,6 +23,7 @@ urlpatterns = [
     path('board/', views.boardLecture, name='board'),
     path('detail/<int:lecture_id>/', views.detailLecture, name='detail'),
     path('detail/<int:lecture_id>/evaluate/', views.evaluateLecture, name='evaluate'),
+    path('<int:lecture_id>/delete/', views.lecture_delete, name = 'lecture_delete'),
     path('review/', views.review, name="review"),
     path('review/delete/<int:review_id>', views.review_delete, name="review_delete")
 ]

@@ -62,7 +62,7 @@
                 {% if user.is_superuser %}
                 <br>
                 <a href="{# url 'lecture_update' lecture.id #}" class="btn btn-outline-warning btn-sm mt-sm-2">수정</a>
-                <a href="{# url 'lecture_delete' lecture.id #}" class="btn btn-outline-danger btn-sm mt-sm-2">삭제</a>
+                <a href="{% url 'lecture_delete' lecture.id %}" class="btn btn-outline-danger btn-sm mt-sm-2">삭제</a>
                 {% endif %}
             </div>
         </div>
