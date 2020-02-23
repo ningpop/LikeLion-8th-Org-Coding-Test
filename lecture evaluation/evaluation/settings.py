@@ -58,7 +58,7 @@ ROOT_URLCONF = 'evaluation.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': ['evaluation/templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
