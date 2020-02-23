@@ -3,9 +3,9 @@ from .models import Lecture, Review
 
 # Create your views here.
 
-def searchLecture(request):
+def boardLecture(request):
     lecture_list = Lecture.objects.all().order_by('-id')
-    return render(request, 'search.html', {'lecture_list': lecture_list})
+    return render(request, 'board.html', {'lecture_list': lecture_list})
 
 def detailLecture(request, lecture_id):
     lecture_detail = get_object_or_404(Lecture, pk=lecture_id)
