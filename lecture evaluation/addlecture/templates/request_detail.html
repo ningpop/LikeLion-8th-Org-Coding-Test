@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block title %}
+<title>대학 강의 평가 - 강의 추가</title>
+{% endblock %}
+
+{% block style %}
+<style>
+    .card{
+        margin-left: 25%;
+        margin-right: 25%;
+        margin-top: 2%;
+        margin-bottom: 2%;
+    }
+    .board{
+        text-align: center;
+    }
+</style>
+{% endblock %}
+
+{% block navbar %}
+<div class="navbar-nav">
+    <a class="nav-item nav-link" href="{% url 'board' %}">강의 검색</a>
+    <a class="nav-item nav-link active" href="{% url 'add' %}">강의 추가</a>
+</div>
+{% endblock %}
+
+{% block content %}
+<div class="card">
+    <div class="card-header">신규 강의 등록 요청</div>
+    <div class="card-body">
+        <h4 class="card-title">{{ request_detail.title }}</h5>
+        <h5 class="card-subtitle mb-2 text-muted">{{ request_detail.professor }}</h5>
+        <p style="float: right;">신청자: {{ request_detail.user }}</p>
+    </div>
+</div>
+{% endblock %}
