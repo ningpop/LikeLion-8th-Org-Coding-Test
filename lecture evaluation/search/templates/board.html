@@ -46,7 +46,7 @@
     </div>
 
     <div class="board">
-        {% for lecture in lecture_list %}
+        {% for lecture in lectures %}
         {% if forloop.counter0|divisibleby:2 %}
         <br><br>
         {% endif %}
@@ -61,12 +61,26 @@
                 {% endif %}
                 {% if user.is_superuser %}
                 <br>
-                <a href="{# url 'lecture_update' lecture.id #}" class="btn btn-outline-warning btn-sm mt-sm-2">수정</a>
                 <a href="{% url 'lecture_delete' lecture.id %}" class="btn btn-outline-danger btn-sm mt-sm-2">삭제</a>
                 {% endif %}
             </div>
         </div>
         {% endfor %}
+
+        <br><br>
+        {%if lectures.has_previous%}
+        <a href="?page=1" class="btn btn-outline-secondary btn-sm">First</a>
+        <a href="?page={{lectures.previous_page_number}}" class="btn btn-outline-secondary btn-sm">Previous</a>
+        {%endif%}
+
+        <span> {{lectures.number}}</span>
+        <span> of </span>
+        <span>{{lectures.paginator.num_pages}} </span>
+
+        {%if lectures.has_next%}
+        <a href="?page={{lectures.next_page_number}}" class="btn btn-outline-secondary btn-sm">Next</a>
+        <a href="?page={{lectures.paginator.num_pages}}" class="btn btn-outline-secondary btn-sm">Last</a>
+        {%endif%}
     </div>
 </div>
 {% endblock %}

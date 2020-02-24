@@ -1,6 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import Lecture, LectureRequest
 from django.utils import timezone
+from django.core.paginator import Paginator
 
 # Create your views here.
 
@@ -8,7 +9,10 @@ from django.utils import timezone
 # 강의 추가 요청 목록 page
 def addLecture(request):
     request_list = LectureRequest.objects.all()
-    return render(request, 'add.html', {'request_list': request_list})
+    paginator = Paginator(request_list, 10)
+    page = request.GET.get('page')
+    requests = paginator.get_page(page)
+    return render(request, 'add.html', {'requests': requests})
 
 # 강의 추가 요청 글 Create page
 def lectureRequest(request):

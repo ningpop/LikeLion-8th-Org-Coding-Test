@@ -64,7 +64,7 @@
                 </tr>
             </thead>
             <tbody>
-                {% for request in request_list %}
+                {% for request in requests %}
                 <tr>
                     <th scope="row">{{ request.id }}</th>
                     <td><a href="{% url 'requestDetail' request.id %}" style="color: black;">{{ request.title }}</a></td>
@@ -74,6 +74,23 @@
                 {% endfor %}
             </tbody>
         </table>
+
+        <br><br>
+        <div style="text-align: center;">
+            {%if requests.has_previous%}
+            <a href="?page=1" class="btn btn-outline-secondary btn-sm">First</a>
+            <a href="?page={{requests.previous_page_number}}" class="btn btn-outline-secondary btn-sm">Previous</a>
+            {%endif%}
+
+            <span> {{requests.number}}</span>
+            <span> of </span>
+            <span>{{requests.paginator.num_pages}} </span>
+
+            {%if requests.has_next%}
+            <a href="?page={{requests.next_page_number}}" class="btn btn-outline-secondary btn-sm">Next</a>
+            <a href="?page={{requests.paginator.num_pages}}" class="btn btn-outline-secondary btn-sm">Last</a>
+            {%endif%}
+        </div>
     </div>
 </div>
 {% endblock %}

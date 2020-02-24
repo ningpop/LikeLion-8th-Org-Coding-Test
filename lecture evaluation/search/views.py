@@ -1,6 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import Lecture, Review
 from django.utils import timezone
+from django.core.paginator import Paginator
 
 # Create your views here.
 
@@ -8,7 +9,10 @@ from django.utils import timezone
 # 강의 목록 page
 def boardLecture(request):
     lecture_list = Lecture.objects.all().order_by('-id')
-    return render(request, 'board.html', {'lecture_list': lecture_list})
+    paginator = Paginator(lecture_list, 6)
+    page = request.GET.get('page')
+    lectures = paginator.get_page(page)
+    return render(request, 'board.html', {'lectures': lectures})
 
 # 강의평 Read page
 def detailLecture(request, lecture_id):
