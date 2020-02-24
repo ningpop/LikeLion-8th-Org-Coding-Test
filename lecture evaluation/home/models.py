@@ -19,7 +19,7 @@ class Review(models.Model):
     lecture = models.ForeignKey(Lecture, on_delete=models.CASCADE, null=True, blank=True, related_name='review')
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True) # many to one field.
     created_at = models.DateField(auto_now=True)
-    personal_score = models.CharField(max_length=10, choices=LECTURE_SCORE, default='None')
+    personal_score = models.CharField(max_length=10, choices=LECTURE_SCORE, default='☆☆☆☆☆')
     body = models.TextField()
 
     class Meta:
